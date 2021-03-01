@@ -15,17 +15,17 @@ public class WebData : MonoBehaviour
         public string nomeArquivoFotoThumb;
     }
 
-    [SerializeField] private ImagesData[] allData;
-
-    [SerializeField] private Image testeImage;
+    private ImagesData[] allData;
+    private UIController uiController;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GetImages());
+        uiController = FindObjectOfType<UIController>();
+        StartCoroutine(GetData());
     }
 
-    private IEnumerator GetImages()
+    private IEnumerator GetData()
     {
         string url = "http://35.194.86.108:621/api/Foto/ListarFotoPublicaTag?Tag=quarto%20casal";
 
@@ -50,41 +50,41 @@ public class WebData : MonoBehaviour
 
     private IEnumerator GetThumbs()
     {
-        WWW w = new WWW(allData[0].nomeArquivoFotoThumb);
-        yield return w;
+        // WWW w = new WWW(allData[0].nomeArquivoFotoThumb);
+        // yield return w;
 
-        if(w.error != null)
-        {
-
-        }
-
-        else
-        {
-            if(w.isDone)
-            {
-                Texture2D tx = w.texture;
-                testeImage.sprite = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
-            }
-        }
-
-        // for (int i = 0; i < allData.Length; i++)
+        // if(w.error != null)
         // {
-        //     WWW w = new WWW(allData[i].nomeArquivoFotoThumb);
-        //     yield return w;
 
-        //     if(w.error != null)
+        // }
+
+        // else
+        // {
+        //     if(w.isDone)
         //     {
-
-        //     }
-
-        //     else
-        //     {
-        //         if(w.isDone)
-        //         {
-        //             Texture2D tx = w.texture;
-        //             testeImage.sprite = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
-        //         }
+        //         Texture2D tx = w.texture;
+        //         testeImage.sprite = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
         //     }
         // }
+
+        for (int i = 0; i < allData.Length; i++)
+        {
+            WWW w = new WWW(allData[i].nomeArquivoFotoThumb);
+            yield return w;
+
+            if(w.error != null)
+            {
+
+            }
+
+            else
+            {
+                if(w.isDone)
+                {
+                    Texture2D tx = w.texture;
+                    uiController.buttonImage[i].sprite = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
+                }
+            }
+        }
     }
 }
