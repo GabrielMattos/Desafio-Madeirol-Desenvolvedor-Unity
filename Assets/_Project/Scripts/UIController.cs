@@ -6,10 +6,11 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameObject panelMainMenu;
+    [SerializeField] private GameObject panelMainMenu, panelIn;
+    [SerializeField] private Button buttonOpenMenu;
     public Image[] buttonImage;
-
     private SceneController sceneController;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,21 +21,27 @@ public class UIController : MonoBehaviour
     private void Initialize()
     {
         sceneController = FindObjectOfType<SceneController>();
+        buttonOpenMenu.onClick.AddListener(() => ButtonOpenMenu());
+        panelIn.gameObject.SetActive(false);
 
         for (int i = 0; i < buttonImage.Length; i++)
         {   
-            buttonImage[i].gameObject.GetComponent<Button>().onClick.AddListener(() => ButtonClosePanel());
+            buttonImage[i].gameObject.GetComponent<Button>().onClick.AddListener(() => ButtonCloseMenu());
         }
     }
 
-    public void ButtonClosePanel()
+    public void ButtonCloseMenu()
     {
-        panelMainMenu.gameObject.SetActive(false);   
+        panelMainMenu.gameObject.SetActive(false); 
+        panelIn.gameObject.SetActive(true); 
+        sceneController.readyToRotateCamera = true; 
         sceneController.GenerateObjectsInScene();
     }
 
-    public void ButtonOpenPanel()
+    public void ButtonOpenMenu()
     {
-        panelMainMenu.gameObject.SetActive(true);   
+        panelMainMenu.gameObject.SetActive(true);
+        panelIn.gameObject.SetActive(false);
+        sceneController.readyToRotateCamera = false; 
     }
 }
