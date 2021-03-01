@@ -7,7 +7,7 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject panelMainMenu, panelIn;
-    [SerializeField] private Button buttonOpenMenu;
+    [SerializeField] private Button buttonOpenMenu, buttonChangeCamera;
     public Image[] buttonImage;
     private SceneController sceneController;
     private ObjectPooler objectPooler;
@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     {
         sceneController = FindObjectOfType<SceneController>();
         buttonOpenMenu.onClick.AddListener(() => ButtonOpenMenu());
+        buttonChangeCamera.onClick.AddListener(() => ButtonChangeCamera());
         panelIn.gameObject.SetActive(false);
         objectPooler = ObjectPooler.Instance;
 
@@ -49,6 +50,23 @@ public class UIController : MonoBehaviour
         for (int i = 0; i < sceneController.parentObjects.transform.childCount; i++)
         {
             sceneController.parentObjects.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void ButtonChangeCamera()
+    {
+        if(sceneController.readyToRotateCamera)
+        {
+            sceneController.readyToRotateCamera = false;
+            Camera.main.GetComponent<NewCamerRot>().enabled = false;
+            Camera.main.GetComponent<SimpleCameraController>().enabled = true;
+        }
+
+        else
+        {
+            sceneController.readyToRotateCamera = true;
+            Camera.main.GetComponent<NewCamerRot>().enabled = true;
+            Camera.main.GetComponent<SimpleCameraController>().enabled = false;
         }
     }
 }

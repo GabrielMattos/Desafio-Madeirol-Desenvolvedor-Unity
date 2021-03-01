@@ -34,9 +34,24 @@ public class NewCamerRot : MonoBehaviour
                 cam.transform.Translate(0f, 0f, -10f);
                 previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
             }
+
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                if (this.gameObject.GetComponent<Camera>().fieldOfView > 1)
+                {
+                    this.gameObject.GetComponent<Camera>().fieldOfView--;
+                }
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                if (this.gameObject.GetComponent<Camera>().fieldOfView < 100)
+                {
+                    this.gameObject.GetComponent<Camera>().fieldOfView++;
+                }
+            }
         }
     }
-
+    
     private void Initialize()
     {
         sceneController = FindObjectOfType<SceneController>();

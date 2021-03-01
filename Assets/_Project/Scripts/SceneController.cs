@@ -6,7 +6,7 @@ public class SceneController : MonoBehaviour
 {
     public Transform parentObjects;
     [SerializeField] private Transform[] rows;
-    [HideInInspector] public bool readyToRotateCamera;
+    public bool readyToRotateCamera;
     private ObjectPooler objectPooler;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
 
     private void Initialize()
     {
-        readyToRotateCamera = false;
+        readyToRotateCamera = true;
         objectPooler = ObjectPooler.Instance;
     }
 

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace UnityTemplateProjects
-{
     public class SimpleCameraController : MonoBehaviour
     {
         class CameraState
@@ -165,5 +163,3 @@ namespace UnityTemplateProjects
             m_InterpolatingCameraState.UpdateTransform(transform);
         }
     }
-
-}
