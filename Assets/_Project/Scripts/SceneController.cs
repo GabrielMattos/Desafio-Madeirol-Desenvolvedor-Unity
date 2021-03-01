@@ -5,9 +5,8 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private GameObject objectPrefab;
-    [SerializeField] private int numberOfObjectsInScene;
     [SerializeField] private Transform parentObjects;
-
+    [SerializeField] private Transform[] rows;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +22,9 @@ public class SceneController : MonoBehaviour
 
     private void GenenateObjectsInScene()
     {
-        for(int i = 0; i < numberOfObjectsInScene; i++)
+        for(int i = 0; i < rows.Length; i++)
         {
-            GameObject GO = Instantiate(objectPrefab, transform.position, Quaternion.identity);
+            GameObject GO = Instantiate(objectPrefab, new Vector3(rows[i].position.x, transform.position.y, rows[i].transform.parent.position.z), Quaternion.identity);
             GO.transform.parent = parentObjects;
         }
     }
