@@ -17,6 +17,12 @@ public class NewCamerRot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        CameraRotation();
+        MouseWhellZoom();
+    }
+
+    private void CameraRotation()
+    {
         if(sceneController.readyToRotateCamera)
         {
             if(Input.GetMouseButtonDown(0))
@@ -34,23 +40,26 @@ public class NewCamerRot : MonoBehaviour
                 cam.transform.Translate(0f, 0f, -10f);
                 previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
             }
+        }
+    }
 
-            if(sceneController.readyToScroll)
+    private void MouseWhellZoom()
+    {
+        if(sceneController.readyToScroll)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-                if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                if (this.gameObject.GetComponent<Camera>().fieldOfView > 1)
                 {
-                    if (this.gameObject.GetComponent<Camera>().fieldOfView > 1)
-                    {
-                        this.gameObject.GetComponent<Camera>().fieldOfView--;
-                    }
+                    this.gameObject.GetComponent<Camera>().fieldOfView--;
                 }
+            }
 
-                if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                if (this.gameObject.GetComponent<Camera>().fieldOfView < 100)
                 {
-                    if (this.gameObject.GetComponent<Camera>().fieldOfView < 100)
-                    {
-                        this.gameObject.GetComponent<Camera>().fieldOfView++;
-                    }
+                    this.gameObject.GetComponent<Camera>().fieldOfView++;
                 }
             }
         }

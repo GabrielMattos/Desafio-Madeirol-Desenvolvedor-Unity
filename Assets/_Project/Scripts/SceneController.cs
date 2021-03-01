@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
 
     private void Initialize()
     {
-        readyToRotateCamera = true;
+        readyToRotateCamera = false;
         readyToScroll = false;
         objectPooler = ObjectPooler.Instance;
     }

@@ -50,23 +50,6 @@ public class WebData : MonoBehaviour
 
     private IEnumerator GetThumbs()
     {
-        // WWW w = new WWW(allData[0].nomeArquivoFotoThumb);
-        // yield return w;
-
-        // if(w.error != null)
-        // {
-
-        // }
-
-        // else
-        // {
-        //     if(w.isDone)
-        //     {
-        //         Texture2D tx = w.texture;
-        //         testeImage.sprite = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
-        //     }
-        // }
-
         for (int i = 0; i < allData.Length; i++)
         {
             WWW w = new WWW(allData[i].nomeArquivoFotoThumb);
