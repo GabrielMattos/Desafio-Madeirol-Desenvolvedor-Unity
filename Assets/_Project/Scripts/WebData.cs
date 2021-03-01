@@ -50,7 +50,7 @@ public class WebData : MonoBehaviour
 
     private IEnumerator GetThumbs()
     {
-        WWW w = new WWW(allData[3].nomeArquivoFotoThumb);
+        WWW w = new WWW(allData[0].nomeArquivoFotoThumb);
         yield return w;
 
         if(w.error != null)
