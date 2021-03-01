@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button buttonOpenMenu;
     public Image[] buttonImage;
     private SceneController sceneController;
+    private ObjectPooler objectPooler;
 
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class UIController : MonoBehaviour
         sceneController = FindObjectOfType<SceneController>();
         buttonOpenMenu.onClick.AddListener(() => ButtonOpenMenu());
         panelIn.gameObject.SetActive(false);
+        objectPooler = ObjectPooler.Instance;
 
         for (int i = 0; i < buttonImage.Length; i++)
         {   
@@ -42,6 +44,11 @@ public class UIController : MonoBehaviour
     {
         panelMainMenu.gameObject.SetActive(true);
         panelIn.gameObject.SetActive(false);
-        sceneController.readyToRotateCamera = false; 
+        sceneController.readyToRotateCamera = false;
+
+        for (int i = 0; i < sceneController.parentObjects.transform.childCount; i++)
+        {
+            sceneController.parentObjects.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }
