@@ -2255,7 +2255,7 @@ Transform:
   m_GameObject: {fileID: 86727569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 2, y: 1, z: 2.5}
   m_Children:
   - {fileID: 1505478048}
   m_Father: {fileID: 779708173}
@@ -28534,6 +28534,7 @@ MonoBehaviour:
   - {fileID: 175495390}
   - {fileID: 1697102910}
   readyToRotateCamera: 0
+  readyToScroll: 0
 --- !u!1001 &1604705346
 PrefabInstance:
   m_ObjectHideFlags: 0

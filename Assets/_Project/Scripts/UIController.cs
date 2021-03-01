@@ -39,6 +39,7 @@ public class UIController : MonoBehaviour
         panelIn.gameObject.SetActive(true); 
         sceneController.readyToRotateCamera = true; 
         sceneController.GenerateObjectsInScene();
+        sceneController.readyToScroll = true;
     }
 
     public void ButtonOpenMenu()
@@ -46,6 +47,7 @@ public class UIController : MonoBehaviour
         panelMainMenu.gameObject.SetActive(true);
         panelIn.gameObject.SetActive(false);
         sceneController.readyToRotateCamera = false;
+        sceneController.readyToScroll = false;
 
         for (int i = 0; i < sceneController.parentObjects.transform.childCount; i++)
         {
