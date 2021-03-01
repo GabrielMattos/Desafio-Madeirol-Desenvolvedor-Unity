@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenenateObjectsInScene();
+        //GenenateObjectsInScene();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
         
     }
 
-    private void GenenateObjectsInScene()
+    public void GenerateObjectsInScene()
     {
         for(int i = 0; i < rows.Length; i++)
         {
